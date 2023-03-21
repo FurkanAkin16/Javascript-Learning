@@ -1,3 +1,4 @@
+
 let js = 'amazing';
 console.log(40 + 8 + 23 - 10);
 
@@ -28,4 +29,9 @@ let isIsland = 'Turkey is in Europe ';
 let isIslandLanguage = "and its 85 million people speak turkish language";
 
 console.log (isIsland);
-console.log (isIslandLanguage);
+console.log (isIslandLanguage); 
+
+
+let javascriptIsFun = true;
+console.log(javascriptIsFun);
+
