@@ -51,12 +51,58 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+
+const rest1 = {
+  name: 'Capri',
+  numGuests: 20,
+};
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+rest1.numGuests ||= 10;
+rest2.numGuests ||= 10;
+console.log(rest1, rest2);
+
+/* console.log(3 || 'Major');
+console.log('' || 'Major');
+console.log(true || 0);
+console.log(undefined || null);
+console.log('-----OR-----');
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('----AND-----');
+console.log(0 && 'Major');
+console.log(7 && 'Major');
+
+console.log('Hello' && 23 && null && 'Major');
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('muhsrooms', 'spinach');*/
+/* restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+const guestsCorrect = restaurant.numGuests ?? 10;
+console.log(guestsCorrect);
 // Part 1
 // SPREAD, Because on RIGHT side of =
-const arr = [1, 2, ...[3, 4]];
+//const arr = [1, 2, ...[3, 4]];
 
 // REST, because on LEFT side of =
-const [a, b, ...others] = [1, 2, 3, 4, 5];
+/* const [a, b, ...others] = [1, 2, 3, 4, 5];
 console.log(a, b, others);
 
 const [pizza, , risotto, ...otherFood] = [
