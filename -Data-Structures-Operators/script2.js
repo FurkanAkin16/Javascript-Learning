@@ -4,6 +4,34 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
+
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  const output = `${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll(
+    '_',
+    ' '
+  )} ${getCode(from)} ${getCode(to)} (${time.replace(':', 'h')})`.padStart(36);
+  console.log(output);
+}
+
+// replacing
+
+/* const priceGB = '288,97£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!';
+
+console.log(announcement.replace('door', 'gate'));
+console.log(announcement.replaceAll('door', 'gate'));
+console.log(announcement.replace(/door/g, 'gate'));*/
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -51,8 +79,174 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+// Split and Join
+/*console.log('a+very+nice+string'.split('+'));
+console.log('Major Sama'.split(' '));
+const [firstName, lastName] = 'Major Sama'.split(' ');
 
-const rest1 = {
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const nameUpper = [];
+  for (const n of names) {
+    // nameUpper.push(n[0].toUpperCase() + n.slice(1));
+    nameUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(nameUpper.join(' '));
+};
+
+capitalizeName('jessica and smith davis');
+capitalizeName('itachi uchiha');
+
+//Padding
+const message = 'Go to gate 23!';
+console.log(message.padStart(20, '+').padEnd(30, '+'));
+console.log('major'.padStart(20, '&').padEnd(30, '='));
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+console.log(maskCreditCard(4321654987546));
+console.log(maskCreditCard('46546541321654'));
+
+// Repeat
+const message2 = 'Bad waether...  All Departues Delayed... && ';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
+};
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
+/*const airline = 'Tap Air Portugal';
+const plane = 'A320';
+/*console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
+
+console.log(airline.length);
+console.log('B737'.length);
+
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal'));
+
+console.log(airline.slice(4));
+console.log(airline.slice(4, 12));
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));*/
+
+/*const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log('You got the middle seat 😯');
+  else console.log('You got lucky 😋 ');
+};
+console.log(airline.toUpperCase());
+console.log(airline.toLowerCase());
+
+// Fix capitalization in name
+const passenger = 'mAjOr'; // Major
+
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+//  Comparing emails
+
+const email = 'hello@major.io';
+const loginEmail = '  Hello@Major.Io \n';
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+// replacing
+
+const priceGB = '288,97£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!';
+
+console.log(announcement.replace('door', 'gate'));
+console.log(announcement.replaceAll('door', 'gate'));
+console.log(announcement.replace(/door/g, 'gate'));
+
+// Booleans
+const planet = 'Airbus A320neo';
+console.log(planet.includes('A320'));
+console.log(planet.includes('Boeing'));
+console.log(planet.startsWith('Air'));
+
+if (planet.startsWith('Airbus' && plane.endsWith('neo'))) {
+  console.log('Part of the NEW Airbus family');
+}
+
+// Practice exercise
+/* const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are NOT allowed on board');
+  } else {
+    console.log('Welcome aboard!');
+  }
+};
+checkBaggage('I have a laptop, some Foot and pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection'); */
+// console.log('-----BREAK------');
+
+// Practice Stadium
+
+/* const checkBody = function (items) {
+  const body = items.toLowerCase();
+  if (
+    body.includes('alkol') ||
+    body.includes('meşale') ||
+    body.includes('knife') ||
+    body.includes('gun')
+  ) {
+    console.log(
+      'Stadyuma giriş yapamazsiniz çünkü üzerinizde yaralayici aletler var ! '
+    );
+  } else {
+    console.log('Stadyuma Hoşgeldiniz ! ');
+  }
+};
+
+checkBody('Üzerimde çekirdek, Alkol ve meşale var');
+checkBody('Üzerimde yalnizca patso var');
+checkBody('Üzerimde  GuN and Knife var');
+checkBody('Üzerimde patates ve  meşale var');
+/*
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+checkMiddleSeat('1C');
+/*const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el} `);
+}
+
+/* const rest1 = {
   name: 'Capri',
   numGuests: 20,
 };
