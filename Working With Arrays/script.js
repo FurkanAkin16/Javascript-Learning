@@ -6,28 +6,28 @@
 
 // Data
 const account1 = {
-  owner: 'Jonas Schmedtmann',
+  owner: 'Furkan Akin',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
   pin: 1111,
 };
 
 const account2 = {
-  owner: 'Jessica Davis',
+  owner: 'Oguzhan Carus',
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
 };
 
 const account3 = {
-  owner: 'Steven Thomas Williams',
+  owner: 'Yunus Emre Navruz',
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
   pin: 3333,
 };
 
 const account4 = {
-  owner: 'Sarah Smith',
+  owner: 'Seckin Navruz',
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
@@ -76,11 +76,29 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR `;
+};
+calcDisplayBalance(account1.movements);
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+createUsernames(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -221,5 +239,105 @@ kateDog.forEach(function (move, index) {
     }
   });
 };
+
 // checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]); */
+// -----------------------------------------------------------------------// -----------------------------------------------------------------------
+/* const eurToUsd = 1.1;
+
+/* const movementUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+});*/
+/*const movementUSD = movements.map(mov => mov * eurToUsd);
+
+console.log(movementUSD);
+console.log(movements); */
+
+/* const movementUSDfor = [];
+for (const mov of movements) movementUSDfor.push(mov * eurToUsd);
+console.log(movementUSDfor); */
+
+/* const movementsDescriptions = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+// FILTER
+console.log(movementsDescriptions); */
+
+/* const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+console.log(movements);
+console.log(deposits);
+
+const depositsFor = [];
+for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+console.log(depositsFor);
+
+const withdraws = movements.filter(mov => mov < 0);
+console.log(withdraws); */
+
+// Reduce
+/*console.log(movements);
+
+/*const balance = movements.reduce(function (acc, cur, i, arr) {
+  console.log(` Iteration ${i}: ${acc}`);
+  return acc + cur;
+}, 0); */
+/*const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
+
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+// Max value
+
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
+console.log(max);*/
+
+/*Julia ve Kate'in köpekler hakkındaki çalışmasına geri dönelim. Bu sefer köpek yaşlarını insan yaşlarına çevirmek ve 
+çalışmalarındaki köpeklerin yaş ortalamasını hesaplamak istiyorlar.
+Görevleriniz:
+
+'ages' adında bir köpek yaşları dizisi alan 'calcAverageHumanAge' adlı bir fonksiyon oluşturun ve sırasıyla şunları yapın:
+ 1// 2 yaşından küçükse, insanYaşı = 2 * köpekYaşı formülünü kullanarak köpek yaşını insan yaşına çevirin. 
+Köpek 2 yaşından büyükse, insanYaşı = 16 + köpekYaşı * 4 formülünü kullanın.
+2//18 yaşından küçük tüm köpekleri çıkarın (en az 18 yaşında olan köpekleri tutmakla aynıdır).
+3//Tüm yetişkin köpeklerin ortalama insan yaşını hesaplayın (ortalama nasıl hesaplandığını zaten diğer sorulardan biliyorsunuz).
+Fonksiyonu her iki test veri kümesi için çalıştırın.
+Test verileri:
+§ Veri 1: [5, 2, 4, 1, 15, 8, 3]
+§ Veri 2: [16, 6, 10, 5, 6, 1, 4]
+İYİ ŞANSLAR :)*/
+
+const calcAverageHumanAge = function (ages) {
+  const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+  console.log(humanAges);
+  const adults = humanAges.filter(age => age >= 18);
+  console.log(adults);
+
+  const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+  return average;
+};
+const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+console.log(avg1, avg2);
+/* const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+/* const eurToUsd = 1.1;
+
+/* const movementUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+});*/
+/*const movementUSD = movements.map(mov => mov * eurToUsd);
+
+ */
+
+/* const movementUSDfor = [];
+for (const mov of movements) movementUSDfor.push(mov * eurToUsd);
+console.log(movementUSDfor); */
