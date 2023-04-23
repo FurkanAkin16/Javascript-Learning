@@ -28,7 +28,7 @@ body {
   height: 100vh;
   overscroll-behavior-y: none;
 
-  background-color: #fff;
+  background-color: #fff5e4;
   padding: 2.5rem;
 
   display: flex;
@@ -43,14 +43,15 @@ a:visited {
 /* SIDEBAR */
 .sidebar {
   flex-basis: 50rem;
-  background-color: var(--color-dark--1);
+  background-color: #dfd3c3;
   padding: 3rem 5rem 4rem 5rem;
   display: flex;
   flex-direction: column;
 }
 
 .logo {
-  height: 5.2rem;
+  height: 35rem;
+  width: 350px;
   align-self: center;
   margin-bottom: 4rem;
 }
@@ -111,6 +112,16 @@ a:visited {
   color: var(--color-light--1);
   text-transform: uppercase;
   font-weight: 800;
+}
+.reset--workout {
+  color: #fff;
+  border-radius: 15px;
+  height: 42.5px;
+  background-color: #7fb77e;
+  margin-bottom: 2px;
+}
+.reset--workout:hover {
+  background-color: #df2e38;
 }
 
 .form {
@@ -175,18 +186,18 @@ a:visited {
   margin-top: auto;
   font-size: 1.3rem;
   text-align: center;
-  color: var(--color-light--1);
+  color: #fff;
 }
 
 .twitter-link:link,
 .twitter-link:visited {
-  color: var(--color-light--1);
+  color: #070a52;
   transition: all 0.2s;
 }
 
 .twitter-link:hover,
 .twitter-link:active {
-  color: var(--color-light--2);
+  color: #c69749;
 }
 
 /* MAP */
