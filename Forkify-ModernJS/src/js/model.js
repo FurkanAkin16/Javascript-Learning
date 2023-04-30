@@ -1,17 +1,20 @@
 import { async } from 'regenerator-runtime';
+import { API_URL, RES_PER_PAGE } from './config.js';
+import { getJSON } from './helpers.js';
+
 export const state = {
   recipe: {},
+  search: {
+    query: '',
+    result: [],
+    page: 1,
+    resultPerPage: RES_PER_PAGE,
+  },
 };
 
 export const loadRecipe = async function (id) {
   try {
-    const res = await fetch(
-      // `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
-      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
-    );
-    const data = await res.json();
-
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+    const data = await getJSON(`${API_URL}${id}`);
 
     const { recipe } = data.data;
     state.recipe = {
@@ -24,8 +27,44 @@ export const loadRecipe = async function (id) {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     };
-    console.log(state.recipe);
   } catch (err) {
-    console.log(err);
+    // Teno error handling
+    console.error(`${err} 💥💥💥`);
+    throw err;
   }
+};
+
+export const loadSearchResults = async function (query) {
+  try {
+    state.search.query = query;
+    const data = await getJSON(`${API_URL}?search=${query}`);
+
+    state.search.result = data.data.recipes.map(rec => {
+      return {
+        id: rec.id,
+        title: rec.title,
+        publisher: rec.publisher,
+        image: rec.image_url,
+      };
+    });
+  } catch (err) {
+    console.error(`${err} 💥💥💥`);
+    throw err;
+  }
+};
+
+export const getSearchResultsPage = function (page = state.search.page) {
+  state.search.page = page;
+  const start = (page - 1) * state.search.resultPerPage;
+  const end = page * state.search.resultPerPage;
+
+  return state.search.result.slice(start, end);
+};
+
+export const updateServings = function (newServings) {
+  state.recipe.ingredients.forEach(ing => {
+    ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
+  });
+
+  state.recipe.servings = newServings;
 };
